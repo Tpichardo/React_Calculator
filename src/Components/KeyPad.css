@@ -1,0 +1,22 @@
+.buttons {
+  max-width: 400px;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+button {
+  flex: 1 25%;
+  padding: 15px;
+  font-size: 1.3em;
+  flex-grow: 1;
+  flex-basis: 25%;
+  background-color: #ddeedd;
+}
+
+.operator {
+  background-color: #96ceb4;
+}
+
+.darkgreen {
+  background-color: #86af49;
+}

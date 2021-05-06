@@ -1,25 +1,72 @@
-import logo from './logo.svg';
+import React from 'react';
+import KeyPad from './Components/KeyPad';
+import Result from './Components/Result';
 import './App.css';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends React.Component {
+  constructor() {
+    super()
+    this.state = {
+      result: ''
+    }
+  }
+
+  clickedVal = (value) => {
+    console.log(value)
+    if (value === 'AC') {
+      this.reset()
+    } else if (value === '=') {
+      this.calculate()
+    } else if (value === '%') {
+      this.percent()
+    } else if (value === '±') {
+      this.posneg()
+    } else {
+      this.setState({
+        result: this.state.result + value
+      })
+    }
+  }
+
+  reset = () => {
+    this.setState({
+      result: ""
+    })
+  }
+
+  calculate = () => {
+    this.setState({
+      result: (eval(this.state.result) || '') + ''
+    })
+  }
+
+  percent = () => {
+    this.setState({
+      result: this.state.result / 100
+    })
+  }
+
+  posneg = () => [
+    this.setState({
+      result: this.state.result * (-1)
+    })
+  ]
+
+
+  render() {
+    const { result } = this.state
+    return (
+      <div className="app">
+        <div className="calculator">
+          <Result result={result} />
+          <KeyPad
+            clickedVal={this.clickedVal}
+            reset={this.reset}
+          />
+        </div>
+      </div>
+    )
+  }
 }
 
 export default App;
