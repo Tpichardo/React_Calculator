@@ -18,15 +18,10 @@ class App extends React.Component {
 
   }
 
-  reset = (value) => {
+  reset = () => {
     this.setState({
-      result: '0'
+      result: ''
     })
-    if (this.state.result === '0') {
-      this.setState({
-        result: value
-      })
-    }
   }
 
   calculate = () => {
