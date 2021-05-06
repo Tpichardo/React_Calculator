@@ -7,31 +7,26 @@ class App extends React.Component {
   constructor() {
     super()
     this.state = {
-      result: ''
+      result: '',
     }
   }
 
   clickedVal = (value) => {
-    console.log(value)
-    if (value === 'AC') {
-      this.reset()
-    } else if (value === '=') {
-      this.calculate()
-    } else if (value === '%') {
-      this.percent()
-    } else if (value === '±') {
-      this.posneg()
-    } else {
-      this.setState({
-        result: this.state.result + value
-      })
-    }
+    this.setState({
+      result: this.state.result + value
+    })
+
   }
 
-  reset = () => {
+  reset = (value) => {
     this.setState({
-      result: ""
+      result: '0'
     })
+    if (this.state.result === '0') {
+      this.setState({
+        result: value
+      })
+    }
   }
 
   calculate = () => {
@@ -52,16 +47,20 @@ class App extends React.Component {
     })
   ]
 
-
   render() {
     const { result } = this.state
     return (
       <div className="app">
         <div className="calculator">
-          <Result result={result} />
+          <Result
+            result={result}
+          />
           <KeyPad
             clickedVal={this.clickedVal}
             reset={this.reset}
+            calculate={this.calculate}
+            percent={this.percent}
+            posneg={this.posneg}
           />
         </div>
       </div>

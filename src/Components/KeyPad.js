@@ -1,13 +1,13 @@
 import React from 'react';
 import './KeyPad.css';
 
-const KeyPad = ({ clickedVal, reset, }) => {
+const KeyPad = ({ clickedVal, reset, calculate, percent, posneg }) => {
     return (
         <div className="buttons">
             <button className='darkgreen' value='' onClick={() => reset()}>AC</button>
-            <button className="operator" value='±' onClick={(e) => clickedVal(e.target.value)}>±</button>
+            <button className="operator" value='±' onClick={() => posneg()}>±</button>
             <button className="operator" value='/' onClick={(e) => clickedVal(e.target.value)}>÷</button>
-            <button className="operator" value='%' onClick={(e) => clickedVal(e.target.value)}>%</button>
+            <button className="operator" value='%' onClick={() => percent()}>%</button>
             <button value='7' onClick={(e) => clickedVal(e.target.value)}>7</button>
             <button value='8' onClick={(e) => clickedVal(e.target.value)}>8</button>
             <button value='9' onClick={(e) => clickedVal(e.target.value)}>9</button>
@@ -22,7 +22,7 @@ const KeyPad = ({ clickedVal, reset, }) => {
             <button className="operator" value='+' onClick={(e) => clickedVal(e.target.value)}>+</button>
             <button value='0' onClick={(e) => clickedVal(e.target.value)}>0</button>
             <button value='.' onClick={(e) => clickedVal(e.target.value)}>.</button>
-            <button className='darkgreen' value='=' onClick={(e) => clickedVal(e.target.value)}>=</button>
+            <button className='darkgreen' value='=' onClick={() => calculate()}>=</button>
         </div>
     )
 }
