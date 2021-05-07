@@ -7,21 +7,40 @@ class App extends React.Component {
   constructor() {
     super()
     this.state = {
-      result: '0',
+      result: '',
     }
   }
 
+  //if its not a number do not do commas. 
+  // its its a plus do the comma dance 
+
+  // clickedVal = (value) => {
+  //   let { result } = this.state
+  //   // result = result.replaceAll(',', '')
+  //   console.log(typeof (value))
+  //   if (result !== '0' && !isNaN(value)) {
+
+  //     this.setState({
+  //       result: result + value
+  //     })
+
+  //     //if the reult is a number and not 0 add
+  //     //if the result is mot a number (+,-) do localestring
+  //   } else {
+  //     this.setState({
+  //       result: value
+  //     })
+  //   }
+  // }
+
   clickedVal = (value) => {
-    let { result } = this.state
-    result = result.replaceAll(',', '')
-    if (result !== '0') {
-      let num = result + value
+    if (this.state.result === '0') {
       this.setState({
-        result: (Number(num).toLocaleString().toString())
+        result: value
       })
     } else {
       this.setState({
-        result: value
+        result: this.state.result + value
       })
     }
   }
@@ -34,19 +53,20 @@ class App extends React.Component {
 
   calculate = () => {
     this.setState({
-      result: (eval(this.state.result).toLocaleString('en-US') || '') + ''
+      result: eval(this.state.result)
+      //  (eval(this.state.result).toLocaleString('en-US') || '') + ''
     })
   }
 
   percent = () => {
     this.setState({
-      result: parseInt(this.state.result) / (100)
+      result: Number(this.state.result * 0.01)
     })
   }
 
   posneg = () => {
     this.setState({
-      result: Number(this.state.result) * (-1)
+      result: Number(this.state.result * -1)
     })
 
   }
