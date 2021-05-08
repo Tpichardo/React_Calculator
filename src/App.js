@@ -1,96 +1,128 @@
 import React from 'react';
 import KeyPad from './Components/KeyPad';
-import Result from './Components/Result';
+import OutPut from './Components/OutPut';
 import './App.css';
 
 class App extends React.Component {
   constructor() {
     super()
     this.state = {
-      result: '',
+      outPut: '',
+      memory: '',
+      operation: ''
     }
   }
 
-  //if its not a number do not do commas. 
-  // its its a plus do the comma dance 
-
-  // clickedVal = (value) => {
-  //   let { result } = this.state
-  //   // result = result.replaceAll(',', '')
-  //   console.log(typeof (value))
-  //   if (result !== '0' && !isNaN(value)) {
-
-  //     this.setState({
-  //       result: result + value
-  //     })
-
-  //     //if the reult is a number and not 0 add
-  //     //if the result is mot a number (+,-) do localestring
-  //   } else {
-  //     this.setState({
-  //       result: value
-  //     })
-  //   }
-  // }
-
   clickedVal = (value) => {
-    if (this.state.result === '0') {
+    if (this.state.outPut === '0') {
       this.setState({
-        result: value
+        outPut: value
       })
     } else {
       this.setState({
-        result: this.state.result + value
+        outPut: this.state.outPut + value
       })
     }
   }
 
-  reset = () => {
+  posneg = () => {
     this.setState({
-      result: '0'
+      outPut: Number(this.state.outPut * -1)
     })
+
   }
 
-  calculate = () => {
+  divide = () => {
     this.setState({
-      result: eval(this.state.result)
-      //  (eval(this.state.result).toLocaleString('en-US') || '') + ''
+      outPut: '',
+      memory: this.state.outPut,
+      operation: '/'
     })
   }
 
   percent = () => {
     this.setState({
-      result: Number(this.state.result * 0.01)
+      outPut: Number(this.state.outPut * 0.01)
     })
   }
 
-  posneg = () => {
+  multiply = () => {
     this.setState({
-      result: Number(this.state.result * -1)
+      outPut: '',
+      memory: this.state.outPut,
+      operation: '*'
     })
-
   }
 
+  subtract = () => {
+    this.setState({
+      outPut: '',
+      memory: this.state.outPut,
+      operation: '-'
+    })
+  }
+
+  sum = () => {
+    this.setState({
+      outPut: '',
+      memory: this.state.outPut,
+      operation: '+'
+    })
+  }
+
+  reset = () => {
+    this.setState({
+      outPut: '0'
+    })
+  }
+
+
+  calculate = () => {
+    const { outPut, memory, operation } = this.state
+    if (operation === '/') {
+      this.setState({
+        outPut: Math.floor((Number(memory) / Number(outPut)))
+      })
+    } else if (operation === '*') {
+      this.setState({
+        outPut: Number(memory) * Number(outPut)
+      })
+    } else if (operation === '-') {
+      this.setState({
+        outPut: Number(memory) - Number(outPut)
+      })
+    } else if (operation === '+') {
+      this.setState({
+        outPut: Number(memory) + Number(outPut)
+      })
+    }
+
+  }
 
   render() {
-    const { result } = this.state
+    const { outPut } = this.state
     return (
       <div className="app">
         <div className="calculator">
-          <Result
-            result={result}
+          <OutPut
+            outPut={outPut}
           />
           <KeyPad
             clickedVal={this.clickedVal}
             reset={this.reset}
             calculate={this.calculate}
-            percent={this.percent}
             posneg={this.posneg}
+            divide={this.divide}
+            percent={this.percent}
+            multiply={this.multiply}
+            subtract={this.subtract}
+            sum={this.sum}
           />
         </div>
       </div>
     )
   }
 }
+
 
 export default App;
