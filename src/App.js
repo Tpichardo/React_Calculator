@@ -6,6 +6,7 @@ import './App.css';
 class App extends React.Component {
   constructor() {
     super()
+    // Really nice work! I love how you updated your calculator to avoid using eval!!
     this.state = {
       outPut: '',
       memory: '',
@@ -32,6 +33,8 @@ class App extends React.Component {
 
   }
 
+  // divide, multiply, subtract, and sum are nearly identical functions
+  // could you find a way to combine them into a single function?
   divide = () => {
     this.setState({
       outPut: '',
