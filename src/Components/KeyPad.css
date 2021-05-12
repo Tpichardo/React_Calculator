@@ -4,6 +4,11 @@
   flex-wrap: wrap;
 }
 
+/* 
+These styles will apply to every button in your entire application, 
+not just buttons in the KeyPad component.
+Try writing a more specific selector!
+*/
 button {
   flex: 1 25%;
   padding: 15px;
