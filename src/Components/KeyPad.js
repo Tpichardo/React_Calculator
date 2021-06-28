@@ -2,6 +2,7 @@ import React from 'react';
 import './KeyPad.css';
 
 const KeyPad = ({ clickedVal, reset, calculate, percent, posneg, sum, subtract, divide, multiply }) => {
+
     return (
         <div className="buttons">
             <button className='darkgreen' value='' onClick={() => reset()}>AC</button>

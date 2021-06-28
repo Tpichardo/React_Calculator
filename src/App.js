@@ -81,7 +81,7 @@ class App extends React.Component {
     const { outPut, memory, operation } = this.state
     if (operation === '/') {
       this.setState({
-        outPut: Math.floor((Number(memory) / Number(outPut)))
+        outPut: Math.round((Number(memory) / Number(outPut)))
       })
     } else if (operation === '*') {
       this.setState({
