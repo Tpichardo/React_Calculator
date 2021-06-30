@@ -3,7 +3,7 @@ import './OutPut.css';
 
 const OutPut = ({ outPut }) => {
     return (
-        <div className="OutPut">
+        <div className="output">
             <p>{Number(outPut).toLocaleString('en-US')}</p>
         </div>
     )

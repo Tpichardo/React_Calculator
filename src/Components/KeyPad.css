@@ -1,22 +1,36 @@
-.buttons {
-  max-width: 400px;
-  display: flex;
-  flex-wrap: wrap;
+.keys {
+  padding: 0.5rem;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-gap: 1px;
+  background: #f7d600;
 }
 
-button {
-  flex: 1 25%;
-  padding: 15px;
-  font-size: 1.3em;
-  flex-grow: 1;
-  flex-basis: 25%;
-  background-color: #ddeedd;
+.key {
+  background: hsl(210, 25%, 95%);
+  border: none;
+  font-size: 1.4rem;
+  inline-size: 60px;
+  block-size: 60px;
+  border-radius: 40px;
+  margin: 0.25rem;
+}
+.key:active,
+.key:focus {
+  box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.3) inset;
+  outline: none;
 }
 
 .operator {
-  background-color: #96ceb4;
+  background: #ae52e3;
+}
+.functionality {
+  background: hsl(208, 25%, 86%);
 }
 
-.darkgreen {
-  background-color: #86af49;
+.calculate {
+  grid-column: 3 / 5;
+  grid-row: 5;
+  background: #f77c00;
+  width: auto;
 }
