@@ -18,6 +18,12 @@ class App extends React.Component {
       this.setState({
         outPut: value
       })
+    } else if (value === "/" || value === "*" || value === "-" || value === "+") {
+      this.setState({
+        outPut: '',
+        memory: this.state.outPut,
+        operation: value
+      })
     } else {
       this.setState({
         outPut: this.state.outPut + value
@@ -29,44 +35,11 @@ class App extends React.Component {
     this.setState({
       outPut: Number(this.state.outPut * -1)
     })
-
-  }
-
-  divide = () => {
-    this.setState({
-      outPut: '',
-      memory: this.state.outPut,
-      operation: '/'
-    })
   }
 
   percent = () => {
     this.setState({
       outPut: Number(this.state.outPut * 0.01)
-    })
-  }
-
-  multiply = () => {
-    this.setState({
-      outPut: '',
-      memory: this.state.outPut,
-      operation: '*'
-    })
-  }
-
-  subtract = () => {
-    this.setState({
-      outPut: '',
-      memory: this.state.outPut,
-      operation: '-'
-    })
-  }
-
-  sum = () => {
-    this.setState({
-      outPut: '',
-      memory: this.state.outPut,
-      operation: '+'
     })
   }
 
@@ -76,27 +49,32 @@ class App extends React.Component {
     })
   }
 
-
   calculate = () => {
     const { outPut, memory, operation } = this.state
-    if (operation === '/') {
-      this.setState({
-        outPut: Math.round((Number(memory) / Number(outPut)))
-      })
-    } else if (operation === '*') {
-      this.setState({
-        outPut: Number(memory) * Number(outPut)
-      })
-    } else if (operation === '-') {
-      this.setState({
-        outPut: Number(memory) - Number(outPut)
-      })
-    } else if (operation === '+') {
-      this.setState({
-        outPut: Number(memory) + Number(outPut)
-      })
+    switch (operation) {
+      case "/":
+        this.setState({
+          outPut: Math.round((Number(memory) / Number(outPut)))
+        })
+        break;
+      case "*":
+        this.setState({
+          outPut: Number(memory) * Number(outPut)
+        })
+        break;
+      case "-":
+        this.setState({
+          outPut: Number(memory) - Number(outPut)
+        })
+        break;
+      case "+":
+        this.setState({
+          outPut: Number(memory) + Number(outPut)
+        })
+        break;
+      default:
+        return 0;
     }
-
   }
 
   render() {
@@ -112,11 +90,7 @@ class App extends React.Component {
             reset={this.reset}
             calculate={this.calculate}
             posneg={this.posneg}
-            divide={this.divide}
             percent={this.percent}
-            multiply={this.multiply}
-            subtract={this.subtract}
-            sum={this.sum}
           />
         </div>
       </div>
