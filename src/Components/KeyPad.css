@@ -3,7 +3,7 @@
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   grid-gap: 1px;
-  background: #f7d600;
+  background: #ff40c6;
 }
 
 .key {
@@ -22,7 +22,7 @@
 }
 
 .operator {
-  background: #ae52e3;
+  background: #a348c7;
 }
 .functionality {
   background: hsl(208, 25%, 86%);
@@ -31,6 +31,6 @@
 .calculate {
   grid-column: 3 / 5;
   grid-row: 5;
-  background: #f77c00;
+  background: #ff8b38;
   width: auto;
 }
